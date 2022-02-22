@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +33,15 @@ Route::get('/grabaciones/{nombre}/{anio?}/{cantidad?}', function ($nombre, $anio
     ]); */
 });
 
+Route::get('/tareas', function () {
+   $tareas = DB::table('tareas')->get();
+    //dd($tareas);
+    return view('tareas/indexTareas',compact('tareas'));
+});
+
+
+Route::get('/tareas/create', function () {
+
+     return view('tareas/formTareas');
+ });
 
