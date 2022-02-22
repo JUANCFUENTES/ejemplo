@@ -22,12 +22,14 @@ Route::get('/hola-mundo', function () {
 });
 
 Route::get('/grabaciones/{nombre}/{anio?}/{cantidad?}', function ($nombre, $anio = null, $cantidad=20) {
-    
+
     return view('paginas/grabaciones', compact('nombre', 'anio','cantidad'));
-    
+
     /*return view('paginas/grabaciones')
     -> with([
-        'nombre' => $nombre, 
+        'nombre' => $nombre,
         'otra' => 'otra variable'
     ]); */
 });
+
+
