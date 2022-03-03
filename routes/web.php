@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\TareaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,15 +33,22 @@ Route::get('/grabaciones/{nombre}/{anio?}/{cantidad?}', function ($nombre, $anio
     ]); */
 });
 
-Route::get('/tareas', function () {
-   $tareas = DB::table('tareas')->get();
-    //dd($tareas);
-    return view('tareas/indexTareas',compact('tareas'));
-});
+
+//Route::get('/tareas/pdf', [TareaController::class, 'pdf']);
 
 
-Route::get('/tareas/create', function () {
 
-     return view('tareas/formTareas');
- });
 
+
+
+
+
+
+Route::resource('/tareas',TareaController::class);  //Con esta sentencia se ejecutan todas las siguientes (Son para metodos del CRUD)
+//Route::get('/tareas', [TareaController::class, 'index']);
+//Route::get('/tareas/create', [TareaController::class, 'create'] );
+// Route::post('/tareas/store', [TareaController::class, 'store']);
+//show
+//edit
+//update
+//delete

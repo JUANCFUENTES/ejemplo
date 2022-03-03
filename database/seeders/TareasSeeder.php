@@ -16,8 +16,8 @@ class TareasSeeder extends Seeder
     public function run()
     {
         DB :: table('tareas')->insert([
-            'tarea' => 'Ejemplo 2',
-            'descripcion' => 'Ejemplo de descripcion2',
+            'tarea' => 'Ejemplo 1',
+            'descripcion' => 'Ejemplo de descripcion 1',
             'tipo' => 'Escuela',
             'created_at' => now(),
             'updated_at' => now(),
