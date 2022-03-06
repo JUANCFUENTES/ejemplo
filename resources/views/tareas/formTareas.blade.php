@@ -20,10 +20,17 @@
              </div>
     @endif
 
-    <form action="/tareas" method="POST">
+    @isset($tarea)
+    <form action="/tareas/{{ $tarea->id }}" method="POST">  {{-- Editar --}}
+        @method('PATCH')
+
+        @else
+        <form action="/tareas" method="POST">  {{-- Crear --}}
+    @endisset
+
         @csrf
         <label for="tarea">Nombre de la Tarea:</label> <br>
-        <input type="text" name="tarea" value="{{ old('tarea') }}"> <br>
+        <input type="text" name="tarea" value="{{ isset($tarea) ? $tarea->tarea : old('tarea') }}"> <br>
 
         <!-- Validacion -->
         @error('tarea')
@@ -33,7 +40,7 @@
         <br>
         <label for="descripcion">Descripcion</label> <br>
         <textarea name="descripcion" id="descripcion" cols="10" rows="5">
-        {{ old('descripcion') }}
+        {{ isset($tarea) ? $tarea->descripcion : old('descripcion') }}
         </textarea> <br>
 
         <!-- Validacion -->
@@ -44,8 +51,9 @@
         <br>
         <label for="categoria">Categoria</label> <br>
         <select name="tipo" id="tipo">
-            <option value="Escuela">Escuela</option>
-            <option value="Trabajo">Trabajo</option>
+            <option value="Escuela" {{ isset($tarea) && $tarea->tipo == 'Escuela' ? 'selected' :'' }}>Escuela</option>
+            <option value="Trabajo" {{ isset($tarea) && $tarea->tipo == 'Trabajo' ? 'selected' :'' }}>Trabajo</option>
+            <option value="Otra" {{ isset($tarea) && $tarea->tipo == 'Otra' ? 'selected' :'' }}>Otra</option>
         </select>
         <br> <br>
         <input type="submit" value="Guardar">
